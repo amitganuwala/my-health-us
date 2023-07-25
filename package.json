@@ -13,7 +13,10 @@
   },
   "dependencies": {
     "@shopify/app": "3.47.5",
-    "@shopify/cli": "3.47.5"
+    "@shopify/cli": "3.47.5",
+    "body-parser": "^1.20.2",
+    "cors": "^2.8.5",
+    "mysql": "^2.18.1"
   },
   "author": "Mit",
   "private": true,

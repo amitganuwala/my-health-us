@@ -8,6 +8,10 @@ import shopify from "./shopify.js";
 import productCreator from "./product-creator.js";
 import GDPRWebhookHandlers from "./gdpr.js";
 
+import mysql from "mysql";
+import bodyParser from "body-parser";
+import cors from "cors";
+
 const PORT = parseInt(
   process.env.BACKEND_PORT || process.env.PORT || "3000",
   10
@@ -19,7 +23,46 @@ const STATIC_PATH =
     : `${process.cwd()}/frontend/`;
 
 const app = express();
+app.use(cors());
+app.use(express.json());
+app.use(bodyParser.json());
 
+const db = mysql.createConnection({
+  host: "localhost",
+  user: "root",
+  password: "",
+  database: "myhealthdb",
+});
+
+app.post("/addaccount", (req, res) => {
+  const sql = "INSERT INTO account (`first_name`,`last_name`,`phone_no`,`email`) VALUES (?)";
+  const values = [
+    req.body.first_name,
+    req.body.last_name,
+    req.body.phone_no,
+    req.body.email
+  ]
+  db.query(sql, [values], (err, data) => {
+    if (err) {
+      return res.json("Error");
+    }
+    return res.json(data);
+  });
+})
+
+
+
+
+//connect to database
+db.connect((err) => {
+  if (err) throw err;
+  console.log('Mysql Connected...');
+});
+
+
+app.listen(8081, () => {
+  console.log("Server running successfully on 8081");
+});
 // Set up Shopify authentication and webhook handling
 app.get(shopify.config.auth.path, shopify.auth.begin());
 app.get(
