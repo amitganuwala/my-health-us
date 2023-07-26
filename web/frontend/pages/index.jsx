@@ -11,7 +11,7 @@ import {
 } from "@shopify/polaris";
 import { TitleBar } from "@shopify/app-bridge-react";
 import { useTranslation, Trans } from "react-i18next";
-import {useState, useCallback} from 'react';
+import { useState, useCallback } from 'react';
 
 import { trophyImage } from "../assets";
 
@@ -25,24 +25,34 @@ import { Personal } from "../components/Personal";
 export default function HomePage() {
   const { t } = useTranslation();
 
- const [selected, setSelected] = useState(0);
+  const [selected, setSelected] = useState(0);
 
- const handleTabChange = useCallback(
-  (_selectedTabIndex) => setSelected(_selectedTabIndex),
-  [],
-);
+  const handleTabChange = useCallback(
+    (_selectedTabIndex) => setSelected(_selectedTabIndex),
+    [],
+  );
 
   const tabs = [
     {
-      id: 'all-customers-fitted-2',
+      id: 'all-customers-1',
       content: 'All',
       accessibilityLabel: 'All customers',
-      panelID: 'all-customers-fitted-content-2',
+      panelID: 'all-customers-content-1',
     },
     {
-      id: 'accepts-marketing-fitted-2',
+      id: 'accepts-marketing-1',
       content: 'Accepts marketing',
-      panelID: 'accepts-marketing-fitted-Ccontent-2',
+      panelID: 'accepts-marketing-content-1',
+    },
+    {
+      id: 'repeat-customers-1',
+      content: 'Repeat customers',
+      panelID: 'repeat-customers-content-1',
+    },
+    {
+      id: 'prospects-1',
+      content: 'Prospects',
+      panelID: 'prospects-content-1',
     },
   ];
 
@@ -52,23 +62,22 @@ export default function HomePage() {
       <TitleBar title={t("HomePage.title")} primaryAction={null} />
 
       <LegacyCard>
-      <Tabs tabs={tabs} selected={selected} onSelect={handleTabChange} fitted>
-        <LegacyCard.Section title={tabs[selected].content}>
-          <p>Tab {selected} selected</p>
-        </LegacyCard.Section>
-      </Tabs>
-    </LegacyCard>
-
+        <Tabs tabs={tabs} selected={selected} onSelect={handleTabChange} fitted>
+          <LegacyCard.Section title={tabs[selected].content}>
+            <p>Tab {selected} selected</p>
+          </LegacyCard.Section>
+        </Tabs>
+      </LegacyCard>
 
       <Layout>
         <Layout.Section>
-            <AccountBar />
+          <AccountBar />
         </Layout.Section>
         <Layout.Section>
-           <Contact /> 
+          <Contact />
         </Layout.Section>
         <Layout.Section>
-            <Personal />
+          <Personal />
         </Layout.Section>
       </Layout>
     </Page>

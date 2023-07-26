@@ -75,6 +75,36 @@ export function Contact() {
                     <br />
                     <button type="submit" className="btn-cards">Submit</button>
                 </form>
+                <hr/>
+                <form className="contact-form" onSubmit={ContacthandleSubmit} >
+                    <label htmlFor="text">Contact 4</label><br />
+
+                    <input type="text" label="Name" name="name" placeholder="Name" onChange={ContacthandleChange} required />
+
+                    <input type="text" label="relation" name="relation" placeholder="Relation" onChange={ContacthandleChange} required />
+
+                    <input type="tel" label="Phone Number" name="phoneno" placeholder="phone no" onChange={ContacthandleChange} required />
+
+                    <input type="text" label="Email" name="email" placeholder="Email" onChange={ContacthandleChange} required />
+                    <br />
+                    <br />
+                    <button type="submit" className="btn-cards">Submit</button>
+                </form>
+                <hr/>
+                <form className="contact-form" onSubmit={ContacthandleSubmit} >
+                    <label htmlFor="text">Contact 5</label><br />
+
+                    <input type="text" label="Name" name="name" placeholder="Name" onChange={ContacthandleChange} required />
+
+                    <input type="text" label="relation" name="relation" placeholder="Relation" onChange={ContacthandleChange} required />
+
+                    <input type="tel" label="Phone Number" name="phoneno" placeholder="phone no" onChange={ContacthandleChange} required />
+
+                    <input type="text" label="Email" name="email" placeholder="Email" onChange={ContacthandleChange} required />
+                    <br />
+                    <br />
+                    <button type="submit" className="btn-cards">Submit</button>
+                </form>
 
                 
             </Card>
