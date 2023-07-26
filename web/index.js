@@ -50,7 +50,39 @@ app.post("/addaccount", (req, res) => {
   });
 })
 
+app.post("/addcontact", (req, res) => {
+  const sql = "INSERT INTO contact (`name`,`relation`,`phoneno`,`email`) VALUES (?)";
+  const values = [
+    req.body.name,
+    req.body.relation,
+    req.body.phoneno,
+    req.body.email
+  ]
+  db.query(sql, [values], (err, data) => {
+    if (err) {
+      return res.json("Error");
+    }
+    return res.json(data);
+  });
+})
 
+app.post("/addpersonal", (req, res) => {
+  const sql = "INSERT INTO personal (`hometown`,`nationality`,`languages`,`religion`,`other`,`private`) VALUES (?)";
+  const values = [
+    req.body.hometown,
+    req.body.nationality,
+    req.body.languages,
+    req.body.religion,
+    req.body.other,
+    req.body.private
+  ]
+  db.query(sql, [values], (err, data) => {
+    if (err) {
+      return res.json("Error");
+    }
+    return res.json(data);
+  });
+})
 
 
 //connect to database
